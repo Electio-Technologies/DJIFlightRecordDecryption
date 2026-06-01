@@ -10,7 +10,6 @@ add_executable(${current_project_name} main.cc)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++11 -O3 -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --std=c++11 -O0")
 
-set(CURL_LIBRARY "-lcurl")
 find_package(CURL REQUIRED)
 
 # Pour in the File Filter traversal tool.

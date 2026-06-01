@@ -38,38 +38,27 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --std=c++11 -O0")
 # Folder path to introduce FlightRecordEngine
 target_include_directories(
     ${current_project_name}
-    PUBLIC 
+    PUBLIC
     ${all_project_root_path}/dji-flightrecordengine/source/
-    ${all_project_root_path}/third-party/header/libtomcrypt/include
-    ${all_project_root_path}/third-party/header/libcurl/include
 )
 
 # Introduction of the Engine library
 add_subdirectory(${all_project_root_path}/dji-flightrecordengine/source EngineBuild)
 target_link_libraries(${current_project_name} FlightRecordEngine)
 
-# Import third party - libcurl/libssl/libcrypto
-add_library(libcurl STATIC IMPORTED)
-set_target_properties( libcurl PROPERTIES
-    IMPORTED_LOCATION ${all_project_root_path}/third-party/build/libcurl/lib/${platformLowerStr}/libcurl.a
-    INTERFACE_INCLUDE_DIRECTORIES "${all_project_root_path}/third-party/header/libcurl/include"
-)
-
-add_library(libssl STATIC IMPORTED)
-set_target_properties( libssl PROPERTIES
-    IMPORTED_LOCATION ${all_project_root_path}/third-party/build/libopenssl/lib/${platformLowerStr}/libssl.a
-    INTERFACE_INCLUDE_DIRECTORIES "${all_project_root_path}/third-party/header/libopenssl/include"
-)
-
+# Link against system-installed third party libraries:
+#   libcurl          -> libcurl4-openssl-dev (FindCURL)
+#   libssl/libcrypto -> libssl-dev           (FindOpenSSL; OPENSSL_LIBRARIES = ssl + crypto)
+find_package(CURL REQUIRED)
+find_package(OpenSSL REQUIRED)
 find_package(Threads)
-add_library(libcrypto STATIC IMPORTED)
-set_target_properties( libcrypto PROPERTIES
-    IMPORTED_LOCATION ${all_project_root_path}/third-party/build/libopenssl/lib/${platformLowerStr}/libcrypto.a
-    INTERFACE_INCLUDE_DIRECTORIES "${all_project_root_path}/third-party/header/libopenssl/include"
-    INTERFACE_LINK_LIBRARIES "Threads::Threads"
+target_include_directories(${current_project_name} PUBLIC ${CURL_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR})
+target_link_libraries(${current_project_name}
+    ${CURL_LIBRARIES}
+    ${OPENSSL_LIBRARIES}
+    Threads::Threads
+    dl
 )
-set(CURLS libcurl libssl libcrypto dl)
-target_link_libraries(${current_project_name} ${CURLS})
 
 
 

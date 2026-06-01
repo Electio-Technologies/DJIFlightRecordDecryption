@@ -8,10 +8,6 @@ set(all_project_root_path "${CMAKE_CURRENT_SOURCE_DIR}/../../")
 
 # Pour in the File Filter traversal tool.
 include(${all_project_root_path}/third-party/cmake/common/file/FileFilter.cmake)
-message(${all_project_root_path}/third-party/cmake/common/file/FileFilter.cmake)
-
-# Setting the location of common inventory across platforms
-set(THIRD_PARTY_PATH "${all_project_root_path}/third-party")
 
 file(GLOB_RECURSE All_SOURCES *.h *.hpp *.cpp)
 
@@ -34,8 +30,7 @@ endforeach()
 
 target_include_directories(
 	${current_project_name}
-	PUBLIC 
-	"${THIRD_PARTY_PATH}/header/libtomcrypt/include"
+	PUBLIC
 	"${CMAKE_CURRENT_SOURCE_DIR}/."
 )
 
@@ -46,5 +41,16 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++11 -O3 -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --std=c++11 -O0")
 
 message(${platformLowerStr})
-target_link_libraries(${current_project_name} ${THIRD_PARTY_PATH}/build/libtomcrypt/${platformLowerStr}/libtomcrypt.a)
-target_link_libraries(${current_project_name} ${THIRD_PARTY_PATH}/build/libtomcrypt/${platformLowerStr}/libtommath.a)
+
+# Link against system-installed libtomcrypt/libtommath (apt: libtomcrypt-dev
+# libtommath-dev). CMake ships no find module for these, so locate them with
+# find_library and fail early if absent.
+find_library(TOMCRYPT_LIB NAMES tomcrypt)
+find_library(TOMMATH_LIB NAMES tommath)
+if(NOT TOMCRYPT_LIB)
+	message(FATAL_ERROR "libtomcrypt not found - install libtomcrypt-dev")
+endif()
+if(NOT TOMMATH_LIB)
+	message(FATAL_ERROR "libtommath not found - install libtommath-dev")
+endif()
+target_link_libraries(${current_project_name} ${TOMCRYPT_LIB} ${TOMMATH_LIB})
