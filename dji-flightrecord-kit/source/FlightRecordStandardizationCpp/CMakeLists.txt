@@ -7,7 +7,7 @@ project(${current_project_name})
 set(all_project_root_path "${CMAKE_CURRENT_SOURCE_DIR}/../../../")
 
 # Pour in the File Filter traversal tool.
-include(${all_project_root_path}/common/build/FileFilter.cmake)
+include(${all_project_root_path}/build/FileFilter.cmake)
 
 # Added source files
 file(GLOB_RECURSE All_SOURCES *.h *.hpp *.cpp *.cc)
@@ -16,26 +16,11 @@ file(GLOB_RECURSE All_SOURCES *.h *.hpp *.cpp *.cc)
 source_group_by_dir(All_SOURCES ${CMAKE_CURRENT_SOURCE_DIR})
 include_file_directory(All_SOURCES)
 
-if(ENABLE_SHARED_LIB)
-    Message(STATUS "✅ Build Shared Lib in ${current_project_name}")
-    add_library(${current_project_name} SHARED ${All_SOURCES})
-else()
-    Message(STATUS "✅ Build Static Lib in ${current_project_name}")
-    add_library(${current_project_name} STATIC ${All_SOURCES})
-endif(ENABLE_SHARED_LIB)
-
-# Special configurations for different platforms
-string(TOLOWER ${platform} platformLowerStr)
-Message(STATUS "✅ start ${platform} operation in ${current_project_name}")
+Message(STATUS "✅ Build Static Lib in ${current_project_name}")
+add_library(${current_project_name} STATIC ${All_SOURCES})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++11 -O3 -fPIC")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} --std=c++11 -O0")
-
-if(${platformLowerStr} MATCHES "mac")
-
-elseif(${platformLowerStr} MATCHES "ubuntu")
-
-endif()
 
 # Folder path to introduce FlightRecordStandardizationCpp
 target_include_directories(

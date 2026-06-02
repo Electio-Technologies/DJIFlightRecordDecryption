@@ -7,19 +7,14 @@ project(${current_project_name})
 set(all_project_root_path "${CMAKE_CURRENT_SOURCE_DIR}/../../")
 
 # Pour in the File Filter traversal tool.
-include(${all_project_root_path}/common/build/FileFilter.cmake)
+include(${all_project_root_path}/build/FileFilter.cmake)
 
 file(GLOB_RECURSE All_SOURCES *.h *.hpp *.cpp)
 
 source_group_by_dir(All_SOURCES ${CMAKE_CURRENT_SOURCE_DIR})
 include_file_directory(All_SOURCES)
-if (ENABLE_SHARED_LIB)
-    Message("Build Shared Lib")
-    add_library(${current_project_name} SHARED ${All_SOURCES})
-else()
-    Message("Build Static Lib")
-    add_library(${current_project_name} STATIC ${All_SOURCES})
-endif(ENABLE_SHARED_LIB)
+Message("Build Static Lib")
+add_library(${current_project_name} STATIC ${All_SOURCES})
 
 set(root_directory_relative_current "${empty_param}")
 
@@ -34,13 +29,8 @@ target_include_directories(
 	"${CMAKE_CURRENT_SOURCE_DIR}/."
 )
 
-string(TOLOWER ${platform} platformLowerStr)
-Message(STATUS "✅ start ${platform} operation in ${current_project_name}")
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++11 -O3 -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --std=c++11 -O0")
-
-message(${platformLowerStr})
 
 # Link against system-installed libtomcrypt/libtommath (apt: libtomcrypt-dev
 # libtommath-dev). CMake ships no find module for these, so locate them with

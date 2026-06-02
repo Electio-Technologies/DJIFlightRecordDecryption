@@ -10,7 +10,8 @@ WORKDIR /parse_flyrecord
 
 COPY . .
 
-WORKDIR /parse_flyrecord/dji-flightrecord-kit/build/Ubuntu/FRSample
-RUN sh generate.sh
+# WORKDIR /build
+RUN ls -la
+RUN cd build && sh generate.sh
 
 ENTRYPOINT ["./FRSample"]
