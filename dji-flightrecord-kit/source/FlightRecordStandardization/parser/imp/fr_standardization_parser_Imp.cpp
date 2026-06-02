@@ -5,6 +5,7 @@
 //  Copyright © 2019 DJISDK. All rights reserved.
 //
 
+#include <cstdint>
 #include "fr_standardization_parser_Imp.hpp"
 #include <memory>
 #include <iostream>

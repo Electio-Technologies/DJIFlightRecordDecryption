@@ -8,6 +8,7 @@
 #ifndef fr_standardization_airlink_filler_hpp
 #define fr_standardization_airlink_filler_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include "fr_standardization_airlink_model.hpp"
 #include <FlightRecordProtocolEnum.h>

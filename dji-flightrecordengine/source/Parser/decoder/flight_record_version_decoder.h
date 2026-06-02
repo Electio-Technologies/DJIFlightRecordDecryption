@@ -8,6 +8,7 @@
 #ifndef flight_record_version_decoder_hpp
 #define flight_record_version_decoder_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include <Parser/FlightRecordParserDataTypePublic.h>
 #include <vector>

@@ -8,6 +8,7 @@
 #ifndef fr_standardization_utils_private_h
 #define fr_standardization_utils_private_h
 
+#include <cstdint>
 #include <stdio.h>
 #include <memory>
 #include <string>

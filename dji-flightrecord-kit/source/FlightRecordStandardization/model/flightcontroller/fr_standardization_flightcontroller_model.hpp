@@ -8,6 +8,7 @@
 #ifndef fr_standardization_flightcontroller_model_hpp
 #define fr_standardization_flightcontroller_model_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include "fr_standardization_common.hpp"
 #include <string>

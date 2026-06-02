@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION 3.5)
 
 set(current_project_name "FlightRecordStandardization")
 project(${current_project_name})
@@ -7,7 +7,7 @@ project(${current_project_name})
 set(all_project_root_path "${CMAKE_CURRENT_SOURCE_DIR}/../../../")
 
 # Pour in the File Filter traversal tool.
-include(${all_project_root_path}/third-party/cmake/common/file/FileFilter.cmake)
+include(${all_project_root_path}/common/build/FileFilter.cmake)
 
 # Added source files
 file(GLOB_RECURSE All_SOURCES *.h *.hpp *.cpp)

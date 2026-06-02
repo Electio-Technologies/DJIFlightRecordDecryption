@@ -8,6 +8,7 @@
 #ifndef fr_standardization_remote_controller_interface_h
 #define fr_standardization_remote_controller_interface_h
 
+#include <cstdint>
 #include <stdio.h>
 #include <memory>
 #include "fr_standardization_common_interface.h"

@@ -5,6 +5,7 @@
 //  Copyright © 2020 DJISDK. All rights reserved.
 //
 
+#include <cstdint>
 #include "fr_standardization_go_business_model.hpp"
 
 using namespace DJIFR::standardization;

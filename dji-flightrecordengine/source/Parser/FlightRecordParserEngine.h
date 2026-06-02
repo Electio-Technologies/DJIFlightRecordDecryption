@@ -8,6 +8,7 @@
 #ifndef FlightRecordParserEngine_h
 #define FlightRecordParserEngine_h
 
+#include <cstdint>
 #include <vector>
 #include <Parser/FlightRecordParserDataTypePublic.h>
 #include <model/protocol/fr_protocol.h>

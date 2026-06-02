@@ -19,6 +19,7 @@
  * THE SOFTWARE.
  */
 
+#include <cstdint>
 #include "json11.hpp"
 #include <cassert>
 #include <cmath>

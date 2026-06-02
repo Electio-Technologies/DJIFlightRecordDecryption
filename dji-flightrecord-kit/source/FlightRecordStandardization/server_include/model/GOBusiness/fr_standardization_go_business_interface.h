@@ -8,6 +8,7 @@
 #ifndef fr_standardization_go_business_interface_h
 #define fr_standardization_go_business_interface_h
 
+#include <cstdint>
 #include <stdio.h>
 #include <vector>
 #include <memory>

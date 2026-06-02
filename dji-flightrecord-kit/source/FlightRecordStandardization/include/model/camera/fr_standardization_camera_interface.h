@@ -8,6 +8,7 @@
 #ifndef fr_standardization_camera_interface_h
 #define fr_standardization_camera_interface_h
 
+#include <cstdint>
 #include <stdio.h>
 #include <memory>
 

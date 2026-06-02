@@ -8,6 +8,7 @@
 #ifndef fr_standardization_go_business_filler_hpp
 #define fr_standardization_go_business_filler_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include "fr_standardization_go_business_model.hpp"
 #include <FlightRecordProtocolEnum.h>

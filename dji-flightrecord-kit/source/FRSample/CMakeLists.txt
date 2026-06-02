@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION 3.5)
 
 set(current_project_name "FRSample")
 project("${current_project_name}")
@@ -13,7 +13,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} --std=c++11 -O0")
 find_package(CURL REQUIRED)
 
 # Pour in the File Filter traversal tool.
-include(${all_project_root_path}/third-party/cmake/common/file/FileFilter.cmake)
+include(${all_project_root_path}/common/build/FileFilter.cmake)
 
 file(GLOB_RECURSE StandardizationCppHeader ${all_project_root_path}/dji-flightrecord-kit/source/FlightRecordStandardizationCpp/*.hpp ${all_project_root_path}/dji-flightrecord-kit/source/FlightRecordStandardizationCpp/*.h ${all_project_root_path}/dji-flightrecord-kit/source/FlightRecordStandardization/*.h)
 include_file_directory(StandardizationCppHeader)

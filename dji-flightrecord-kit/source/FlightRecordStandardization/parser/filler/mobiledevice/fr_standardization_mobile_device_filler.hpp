@@ -8,6 +8,7 @@
 #ifndef fr_standardization_mobile_device_filler_hpp
 #define fr_standardization_mobile_device_filler_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include "fr_standardization_mobile_device_state_model.hpp"
 #include <FlightRecordProtocolEnum.h>

@@ -8,6 +8,7 @@
 #ifndef FlightRecordTimer_h
 #define FlightRecordTimer_h
 
+#include <cstdint>
 #include <stdio.h>
 #include <chrono>
 #include <memory>

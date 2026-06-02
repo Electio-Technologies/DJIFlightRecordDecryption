@@ -5,6 +5,7 @@
 //  Copyright © 2019 DJISDK. All rights reserved.
 //
 
+#include <cstdint>
 #include "fr_standardization_battery_filler.hpp"
 #include <model/protocol/fr_protocol.h>
 #include <string.h>

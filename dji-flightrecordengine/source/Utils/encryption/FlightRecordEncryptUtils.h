@@ -8,6 +8,7 @@
 #ifndef FlightRecordEncryptUtils_hpp
 #define FlightRecordEncryptUtils_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include <iostream>
 #include <Utils/buffer/flight_record_buffer.h>

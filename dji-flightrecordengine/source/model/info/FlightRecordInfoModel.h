@@ -8,6 +8,7 @@
 #ifndef FlightRecordInfoModel_h
 #define FlightRecordInfoModel_h
 
+#include <cstdint>
 #include <model/FlightRecordCommonModel.h>
 
 namespace DJI {

@@ -8,6 +8,7 @@
 #ifndef fr_standardization_parser_Imp_hpp
 #define fr_standardization_parser_Imp_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include "fr_server_standardization_parser.h"
 #include <Parser/FlightRecordParserEngine.h>

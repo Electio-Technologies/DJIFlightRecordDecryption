@@ -8,6 +8,7 @@
 #ifndef fr_standardization_camera_state_hpp
 #define fr_standardization_camera_state_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include <memory>
 #include "fr_standardization_camera_interface.h"

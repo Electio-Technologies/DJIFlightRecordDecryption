@@ -6,6 +6,7 @@
 #ifndef FlightRecordCRC64_h
 #define FlightRecordCRC64_h
 
+#include <cstdint>
 #include <stdio.h>
 
 namespace DJI {

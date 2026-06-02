@@ -8,6 +8,7 @@
 #ifndef fr_standardization_rc_hardware_filler_hpp
 #define fr_standardization_rc_hardware_filler_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include "fr_standardization_frametime_model.hpp"
 #include <FlightRecordProtocolEnum.h>

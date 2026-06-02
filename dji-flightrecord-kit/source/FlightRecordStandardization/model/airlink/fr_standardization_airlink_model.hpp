@@ -8,6 +8,7 @@
 #ifndef fr_standardization_airlink_model_hpp
 #define fr_standardization_airlink_model_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include "fr_standardization_airlink_interface.h"
 #include <model/protocol/dji_product_type.h>

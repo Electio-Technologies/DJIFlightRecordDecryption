@@ -5,6 +5,7 @@
 //  Copyright © 2019 DJISDK. All rights reserved.
 //
 
+#include <cstdint>
 #include "fr_standardization_summary_model.hpp"
 
 using namespace DJIFR::standardization;

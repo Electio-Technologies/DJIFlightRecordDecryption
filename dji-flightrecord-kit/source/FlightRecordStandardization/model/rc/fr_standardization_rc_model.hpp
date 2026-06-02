@@ -8,6 +8,7 @@
 #ifndef fr_standardization_rc_model_hpp
 #define fr_standardization_rc_model_hpp
 
+#include <cstdint>
 #include "fr_standardization_remote_controller_interface.h"
 #include "fr_standardization_common.hpp"
 

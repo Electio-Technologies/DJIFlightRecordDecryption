@@ -5,6 +5,7 @@
 //  Copyright © 2020 DJISDK. All rights reserved.
 //
 
+#include <cstdint>
 #include <stdio.h>
 #include "fr_standardization_utils.h"
 #include <Utils/math/FlightRecordMaths.h>

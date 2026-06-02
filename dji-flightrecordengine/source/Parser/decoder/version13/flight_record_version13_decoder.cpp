@@ -5,6 +5,7 @@
 //  Copyright © 2019 DJISDK. All rights reserved.
 //
 
+#include <cstdint>
 #include <Parser/decoder/version13/flight_record_version13_decoder.hpp>
 #include <model/protocol/fr_protocol.h>
 #include <Utils/File/FlightRecordFileHandleUtils.h>

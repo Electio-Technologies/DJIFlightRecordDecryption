@@ -8,6 +8,8 @@
 #ifndef ZucGZjOtwWrgqCCe_h
 #define ZucGZjOtwWrgqCCe_h
 
+#include <cstdint>
+
 #pragma pack(1)
 /**
  *  @brief joystick

@@ -5,6 +5,7 @@
 //  Copyright © 2020 DJISDK. All rights reserved.
 //
 
+#include <cstdint>
 #include "fr_standardization_mobile_device_filler.hpp"
 #include <model/protocol/fr_protocol.h>
 #include <string.h>

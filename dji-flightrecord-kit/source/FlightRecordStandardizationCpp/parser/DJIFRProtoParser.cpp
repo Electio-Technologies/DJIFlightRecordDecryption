@@ -5,6 +5,7 @@
 //  Copyright © 2019 DJISDK. All rights reserved.
 //
 
+#include <cstdint>
 #include "DJIFRProtoParser.hpp"
 #include "fr_standardization_server_creater.h"
 

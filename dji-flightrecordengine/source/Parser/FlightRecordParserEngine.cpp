@@ -5,6 +5,7 @@
 //  Copyright © 2017 DJI. All rights reserved.
 //
 
+#include <cstdint>
 #include <stdio.h>
 #include <iostream>
 #include <Parser/FlightRecordParserEngine.h>

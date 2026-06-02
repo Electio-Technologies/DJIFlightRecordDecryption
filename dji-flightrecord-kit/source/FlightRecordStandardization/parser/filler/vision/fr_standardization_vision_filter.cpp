@@ -4,6 +4,7 @@
 //
 //
 
+#include <cstdint>
 #include "fr_standardization_vision_filter.hpp"
 #include <model/protocol/fr_protocol.h>
 #include <string.h>

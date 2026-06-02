@@ -8,6 +8,7 @@
 #ifndef FlightRecordParser_hpp
 #define FlightRecordParser_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include <functional>
 #include <vector>

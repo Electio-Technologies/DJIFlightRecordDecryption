@@ -8,6 +8,7 @@
 #ifndef fr_standardization_battery_state_hpp
 #define fr_standardization_battery_state_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include <vector>
 #include <model/protocol/dji_product_type.h>

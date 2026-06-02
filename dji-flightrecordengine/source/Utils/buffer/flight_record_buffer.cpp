@@ -5,6 +5,7 @@
 //  Copyright © 2017 DJI. All rights reserved.
 //
 
+#include <cstdint>
 #include <Utils/buffer/flight_record_buffer.h>
 #include <functional>
 #include <string.h>

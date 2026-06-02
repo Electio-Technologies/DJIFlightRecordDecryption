@@ -1,10 +1,10 @@
-FROM ubuntu:22.04
+FROM ubuntu:26.04
 
 ARG SDK_KEY
 ENV SDK_KEY=${SDK_KEY}
 
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y wget git gcc g++ make cmake curl libssl-dev libcurl4-openssl-dev libtomcrypt-dev libtommath-dev zlib1g-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y wget git gcc g++ make cmake curl libssl-dev libcurl4-openssl-dev libtomcrypt-dev libtommath-dev libprotobuf-dev
 
 WORKDIR /parse_flyrecord
 

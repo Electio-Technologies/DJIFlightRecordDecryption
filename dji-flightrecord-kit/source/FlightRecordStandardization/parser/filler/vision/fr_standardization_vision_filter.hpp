@@ -7,6 +7,7 @@
 #ifndef fr_standardization_vision_filter_hpp
 #define fr_standardization_vision_filter_hpp
 
+#include <cstdint>
 #include <stdio.h>
 #include "fr_standardization_vision_model.hpp"
 #include <FlightRecordProtocolEnum.h>

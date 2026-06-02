@@ -8,6 +8,7 @@
 #ifndef FlightRecordParserDataTypePublic_h
 #define FlightRecordParserDataTypePublic_h
 
+#include <cstdint>
 #include <stdio.h>
 #include <FlightRecordProtocolEnum.h>
 #include <iostream>

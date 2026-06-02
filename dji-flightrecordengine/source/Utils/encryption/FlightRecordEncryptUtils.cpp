@@ -5,6 +5,7 @@
 //  Copyright © 2017 DJI. All rights reserved.
 //
 
+#include <cstdint>
 #include <Utils/encryption/FlightRecordEncryptUtils.h>
 #include <Utils/encryption/FlightRecordCRC64.h>
 #include <string.h>

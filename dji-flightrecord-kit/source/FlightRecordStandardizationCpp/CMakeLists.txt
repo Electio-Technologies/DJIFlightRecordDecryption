@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION 3.5)
 
 set(current_project_name "FlightRecordStandardizationCpp")
 project(${current_project_name})
@@ -7,7 +7,7 @@ project(${current_project_name})
 set(all_project_root_path "${CMAKE_CURRENT_SOURCE_DIR}/../../../")
 
 # Pour in the File Filter traversal tool.
-include(${all_project_root_path}/third-party/cmake/common/file/FileFilter.cmake)
+include(${all_project_root_path}/common/build/FileFilter.cmake)
 
 # Added source files
 file(GLOB_RECURSE All_SOURCES *.h *.hpp *.cpp *.cc)
@@ -43,7 +43,6 @@ target_include_directories(
     PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/../FlightRecordStandardizationCpp"
     "${all_project_root_path}/dji-flightrecordengine/source/"
-    "${all_project_root_path}/third-party/source/protobuf-21.6/src"
 )
 
 # include FlightRecordStandardization Header
@@ -54,6 +53,9 @@ include_file_directory(StandardizationHeader)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../FlightRecordStandardization StandardizationBuild)
 target_link_libraries(${current_project_name} FlightRecordStandardization)
 
-add_subdirectory(${all_project_root_path}/third-party/source/protobuf-21.6/src standardProtobufBuild)
-target_link_libraries(${current_project_name} DJIProtobuf)
+# Use system-installed protobuf (apt: libprotobuf-dev). The committed *.pb.cc/.pb.h
+# require protobuf >= 3.21.0; Ubuntu 24.04+ ships 3.21.12, which matches.
+find_package(Protobuf REQUIRED)
+target_include_directories(${current_project_name} PUBLIC ${Protobuf_INCLUDE_DIRS})
+target_link_libraries(${current_project_name} protobuf::libprotobuf)
 
