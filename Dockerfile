@@ -37,8 +37,15 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
 WORKDIR /app
 
 COPY --from=builder /parse_flyrecord/FRSample .
+COPY --from=builder /parse_flyrecord/python/frsample.py .
 
 ARG SDK_KEY
 ENV SDK_KEY=${SDK_KEY}
+# Make `import frsample` work from any cwd, and point the wrapper at the binary.
+ENV PYTHONPATH=/app
+ENV FRSAMPLE_BIN=/app/FRSample
 
-ENTRYPOINT ["./FRSample"]
+# The Python wrapper drives FRSample and always prints JSON to stdout
+# (`{}` plus a stderr message on failure).
+# Usage: docker run --rm -e SDK_KEY=... -v "$(pwd):/data" <img> /data/flight.txt
+ENTRYPOINT ["python3", "/app/frsample.py"]

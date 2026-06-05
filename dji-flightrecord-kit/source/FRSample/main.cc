@@ -26,7 +26,8 @@ int main(int argc, char *argv[]) {
     auto parser = std::make_shared<DJIFRProto::Standard::Parser>();
     auto result = parser->load(file_path);
     if (result != DJIFRProto::Standard::Success) {
-        printf("load file failed");
+        fprintf(stderr, "load file failed\n");
+        printf("{}");
         return 0;
     }
 
@@ -56,7 +57,8 @@ int main(int argc, char *argv[]) {
             printf("{\"summary\": %s, \"info\": %s}", summary_proto_json_string.c_str(), info_proto_json_string.c_str());
 
         } else {
-            printf("error code: %d decription: %s\n", (int)error_code, error_description.c_str());
+            fprintf(stderr, "error code: %d description: %s\n", (int)error_code, error_description.c_str());
+            printf("{}");
         }
     });
     return 0;
