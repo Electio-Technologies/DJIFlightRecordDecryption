@@ -9,6 +9,7 @@
 #include "fr_standardization_camera_filler.hpp"
 #include <model/protocol/fr_protocol.h>
 #include <string.h>
+#include <cstdio>
 
 using namespace DJIFR::standardization;
 
@@ -92,6 +93,52 @@ bool DJIFR::standardization::Filler(std::shared_ptr<CameraStateImp>& output,
             }
             
             memcpy(&data_source, buffer, data_length);
+
+            // // --- DEBUG: dump the raw camera record bytes to stdout ---
+            // // `length` is the full record size on the wire; `data_length` is what
+            // // actually gets copied into the (possibly smaller) struct.
+            // printf("[camera-raw] len=%llu copied=%llu bytes:",
+            //        (unsigned long long)length, (unsigned long long)data_length);
+            // for (uint64_t i = 0; i < length; i++) {
+            //     printf(" %02x", buffer[i]);
+            // }
+            // printf("\n");
+
+            // if (length >= 1) {
+            //     uint8_t b0 = buffer[0];
+
+            //     // Raw bits of byte 0, MSB (bit 7) -> LSB (bit 0).
+            //     printf("             byte0 bits 7..0:");
+            //     for (int bit = 7; bit >= 0; bit--) {
+            //         printf(" %d", (b0 >> bit) & 0x1);
+            //         if (bit == 6 || bit == 3) printf(" |");  // field boundaries
+            //     }
+            //     printf("\n");
+
+            //     // Fields inferred by hand from the bit layout (assumes LSB-first
+            //     // allocation: isConnect=bit0 ... isVideoRecording=bits6-7).
+            //     printf("             inferred from bits: isVideoRecording=%u captureState=%u "
+            //            "timerSyncState=%u isUSBConnect=%u isConnect=%u\n",
+            //            (unsigned)((b0 >> 6) & 0x3),
+            //            (unsigned)((b0 >> 3) & 0x7),
+            //            (unsigned)((b0 >> 2) & 0x1),
+            //            (unsigned)((b0 >> 1) & 0x1),
+            //            (unsigned)((b0 >> 0) & 0x1));
+
+            //     // Authoritative: what the compiler actually extracted from the
+            //     // struct after memcpy (layout-independent ground truth).
+            //     printf("             struct members:     isVideoRecording=%u captureState=%u "
+            //            "timerSyncState=%u isUSBConnect=%u isConnect=%u workMode=%u\n",
+            //            (unsigned)data_source.isVideoRecording,
+            //            (unsigned)data_source.captureState,
+            //            (unsigned)data_source.timerSyncState,
+            //            (unsigned)data_source.isUSBConnect,
+            //            (unsigned)data_source.isConnect,
+            //            (unsigned)data_source.workMode);
+            // }
+            // fflush(stdout);
+            // // --- END DEBUG ---
+
             return FillCameraInfo(data_source, output);
         }
             break;

@@ -21,7 +21,10 @@ using namespace DJI::FlightRecord;
 
 static bool FillOSDData(const dji_fc_osd_push& data_source,
                         std::shared_ptr<FlightControllerStateImp>& output) {
-    auto attitude = std::make_shared<AttitudeImp>(data_source.pitch, data_source.roll, data_source.yaw);
+    // pitch/roll/yaw arrive as int16_t in tenths of a degree (decidegrees), like the
+    // speed_* and barometer_height fields below; scale to degrees so attitude lands in
+    // the documented [-180, 180] range.
+    auto attitude = std::make_shared<AttitudeImp>(data_source.pitch * 0.1, data_source.roll * 0.1, data_source.yaw * 0.1);
     output->set_attitude(attitude);
     
     auto velocity = std::make_shared<VelocityImp>(data_source.speed_x * 0.1, data_source.speed_y * 0.1, data_source.speed_z * 0.1);
@@ -67,7 +70,7 @@ static bool FillOSDHome(const dji_fc_fc_osd_lowfreq_push& data_source,
     
     auto home_location = std::make_shared<LocationCoordinate2DImp>(Rad2deg(data_source.latitude), Rad2deg(data_source.longitude));
     output->set_homeLocationCoordinate(home_location);
-    output->set_takeoffLocationAltitude(data_source.altitude);
+    output->set_takeoffLocationAltitude(data_source.altitude*0.1);
     
     // if there is home location.
     output->set_isHomeLocationSet(true);

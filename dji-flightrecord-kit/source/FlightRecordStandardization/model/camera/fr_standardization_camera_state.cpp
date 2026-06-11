@@ -22,8 +22,10 @@ CameraStateImp::~CameraStateImp() {
 
 std::shared_ptr<CameraStateImp> CameraStateImp::clone() {
     auto clone = std::make_shared<CameraStateImp>();
+    clone->set_index(index());
+    clone->set_mode(mode());
     clone->set_isRecording(isRecording());
-    clone->set_isShootingSinglePhoto(false);
+    clone->set_isShootingSinglePhoto(isShootingSinglePhoto());
     clone->set_isInserted(isInserted());
     clone->set_isInitializing(isInitializing());
     clone->set_hasError(hasError());

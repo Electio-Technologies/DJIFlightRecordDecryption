@@ -1,7 +1,8 @@
 # ---- build stage ----
 # Trixie to match the python:3.11-slim runtime (same Debian release => ABI-matched
 # shared libs). Trixie ships protobuf 3.21.12, which the committed *.pb.cc need.
-FROM debian:trixie-slim AS builder
+# FROM debian:trixie-slim AS builder
+FROM databricksruntime/standard:17.3-LTS AS builder
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         build-essential \
@@ -20,7 +21,8 @@ COPY . .
 RUN cd build && sh generate.sh
 
 # ---- runtime stage ----
-FROM python:3.11-slim AS runtime
+# FROM python:3.11-slim AS runtime
+FROM databricksruntime/standard:17.3-LTS AS runtime
 
 # FRSample bakes in the project's own static libs (FlightRecordEngine /
 # FlightRecordStandardizationCpp), but links the third-party deps dynamically
@@ -38,10 +40,11 @@ WORKDIR /app
 
 COPY --from=builder /parse_flyrecord/FRSample .
 COPY --from=builder /parse_flyrecord/python/frsample.py .
+COPY sample-flightlog.txt .
 
-ARG SDK_KEY
+ARG SDK_KEY="--"
 ENV SDK_KEY=${SDK_KEY}
-# Make `import frsample` work from any cwd, and point the wrapper at the binary.
+
 ENV PYTHONPATH=/app
 ENV FRSAMPLE_BIN=/app/FRSample
 

@@ -28,7 +28,7 @@ std::shared_ptr<FrameTimeStateImp> FrameTimeStateImp::clone() {
     clone->set_flightControllerState(flightControllerState_ ? flightControllerState_->clone() : nullptr);
     std::map<int, std::shared_ptr<CameraStateImp>> camerasState;
     for (auto iter = camerasState_.begin(); iter != camerasState_.end(); iter ++) {
-        camerasState[(*iter).first] = (*iter).second;
+        camerasState[(*iter).first] = (*iter).second->clone();
     }
     clone->camerasState() = camerasState;
     std::map<int, std::shared_ptr<BatteryStateImp>> batteriesState;
