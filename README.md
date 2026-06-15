@@ -15,7 +15,7 @@ https://docs.docker.com/get-docker
 
 **Build docker image**
 ```shell
-docker build --build-arg SDK_KEY=your_app_key -t pf .
+docker build -t pf .
 ```
 
 **Docker run**
@@ -23,7 +23,7 @@ docker build --build-arg SDK_KEY=your_app_key -t pf .
 docker run -v host_dir:container_dir pf "container_flight_record_dir"
 ```
 Sample code：
-docker run -v $(pwd):/tmp pf "/tmp/V132_DJIFlightRecord_2020-06-18_[19-01-24].txt" > json_result.json
+docker run -v $(pwd):/tmp pf "/tmp/some-flightrecord.txt" > json_result.json
 
 "> json_result.json" Redirecting the running result to a specified file
 
