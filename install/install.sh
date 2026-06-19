@@ -13,7 +13,11 @@ fi
 # Install dependencies
 echo "[INFO] Updating package lists and installing dependencies..."
 apt-get update -y
-apt-get install -y libtomcrypt1 libtommath1 libprotobuf32t64 libcurl4t64
+# Try installing the t64 versions. If it fails, install the non-t64 versions instead.
+if ! apt-get install -y libtomcrypt1 libtommath1 libprotobuf32t64 libcurl4t64; then
+    echo "[INFO] t64 packages not found. Falling back to Debian 12 / older Ubuntu packages..."
+    apt-get install -y libtomcrypt1 libtommath1 libprotobuf32 libcurl4
+fi
 
 # Ensure the target directory exists
 if [ ! -dir "$INSTALL_DIR" ]; then
