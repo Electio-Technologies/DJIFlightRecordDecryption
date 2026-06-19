@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-BINARY_NAME="your-binary-name"
+BINARY_NAME="FRSample"
 
 INSTALL_DIR="${1:-/usr/local/bin}"
 
