@@ -20,7 +20,7 @@ if ! apt-get install -y libtomcrypt1 libtommath1 libprotobuf32t64 libcurl4t64; t
 fi
 
 # Ensure the target directory exists
-if [ ! -dir "$INSTALL_DIR" ]; then
+if [ ! -d "$INSTALL_DIR" ]; then
     echo "[INFO] Directory $INSTALL_DIR does not exist. Creating it..."
     mkdir -p "$INSTALL_DIR"
 fi
